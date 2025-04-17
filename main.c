@@ -2,52 +2,53 @@
 #include <stdlib.h>
 #include "common.h"
 
-// =======================
-// NGUYÊN MẪU MODULE CẦN GỌI (được định nghĩa trong các file .c khác)
-// =======================
-void runBookModule();           // Quản lý sách
-void runBorrowReturnModule();   // Mượn – trả sách
-void runReaderModule();         // Quản lý bạn đọc
-void runStatisticModule();      // Thống kê – Báo cáo
-void runReservationModule();    // Đặt chỗ sách
+// ==========================
+// KHAI BÁO NGUYÊN MẪU CỦA MODULE
+// ==========================
+void runBookModule();           // Thành viên 1
+void runBorrowReturnModule();   // Thành viên 2
+void runReaderModule();         // Thành viên 3
+void runStatisticModule();      // Thành viên 4
+void runReservationModule();    // Thành viên 5
 
-// =======================
-// BIẾN TOÀN CỤC ĐƯỢC ĐỊNH NGHĨA Ở ĐÂY
-// =======================
+// ==========================
+// BIẾN TOÀN CỤC
+// ==========================
 Book books[MAX_BOOKS];
 int bookCount = 0;
 
 Reader readers[MAX_READERS];
 int readerCount = 0;
 
-// =======================
+// ==========================
 // HÀM HIỂN THỊ MENU CHÍNH
-// =======================
+// ==========================
 void hienThiMenuChinh() {
     printf("\n");
     printf("=============================================\n");
-    printf("      CHƯƠNG TRÌNH QUẢN LÝ THƯ VIỆN         \n");
+    printf("        HỆ THỐNG QUẢN LÝ THƯ VIỆN\n");
     printf("=============================================\n");
     printf("1. Quản lý danh mục sách\n");
     printf("2. Quản lý mượn – trả sách\n");
     printf("3. Quản lý bạn đọc\n");
-    printf("4. Thống kê – báo cáo\n");
+    printf("4. Báo cáo – thống kê\n");
     printf("5. Đặt chỗ sách\n");
     printf("0. Thoát chương trình\n");
     printf("=============================================\n");
     printf("Nhập lựa chọn của bạn: ");
 }
 
-// =======================
+// ==========================
 // HÀM MAIN
-// =======================
+// ==========================
 int main() {
     int choice;
+
     do {
         hienThiMenuChinh();
         if (scanf("%d", &choice) != 1) {
-            printf("Lỗi nhập liệu. Vui lòng nhập số!\n");
-            while (getchar() != '\n'); // Xóa bộ đệm
+            printf("⚠️  Lỗi: Bạn phải nhập một số!\n");
+            while (getchar() != '\n'); // Xóa bộ đệm nhập
             continue;
         }
 
@@ -68,10 +69,10 @@ int main() {
                 runReservationModule();
                 break;
             case 0:
-                printf("Đang thoát chương trình...\n");
+                printf("👋 Cảm ơn bạn đã sử dụng hệ thống. Hẹn gặp lại!\n");
                 break;
             default:
-                printf("Lựa chọn không hợp lệ. Vui lòng thử lại.\n");
+                printf("❌ Lựa chọn không hợp lệ. Vui lòng thử lại!\n");
         }
 
     } while (choice != 0);
