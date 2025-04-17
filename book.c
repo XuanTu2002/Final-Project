@@ -121,7 +121,7 @@ void xoaSachTheoMa() {
 
 // ==============================
 // ĐIỂM VÀO MODULE: HÀM GỌI TỪ MAIN
-// ==============================
+// =============================
 void runBookModule() {
     int ch;
     do {
