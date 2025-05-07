@@ -1,6 +1,8 @@
 #ifndef COMMON_H
 #define COMMON_H
 
+#include <string.h>
+
 // ========================
 // THÔNG TIN CẤU HÌNH CHUNG
 // ========================
@@ -63,6 +65,34 @@ extern Reader readers[MAX_READERS];     // Danh sách tất cả bạn đọc
 extern int readerCount;                 // Số lượng bạn đọc hiện tại
 
 // Dữ liệu đặt chỗ, thống kê, báo cáo có thể khai báo thêm tùy module
+
+// ========================
+// CÁC HÀM TIỆN ÍCH CHUNG (từ utils.h và utils.c)
+// ========================
+
+/**
+ * Tìm vị trí của sách trong mảng books dựa vào mã sách
+ * @param bookID Mã sách cần tìm
+ * @return Vị trí của sách trong mảng (0-based index), -1 nếu không tìm thấy
+ */
+static inline int timViTriSach(const char bookID[]) {
+    for (int i = 0; i < bookCount; i++) {
+        if (strcmp(books[i].id, bookID) == 0) return i;
+    }
+    return -1;
+}
+
+/**
+ * Tìm vị trí của bạn đọc trong mảng readers dựa vào mã bạn đọc
+ * @param readerID Mã bạn đọc cần tìm
+ * @return Vị trí của bạn đọc trong mảng (0-based index), -1 nếu không tìm thấy
+ */
+static inline int timViTriBanDoc(const char readerID[]) {
+    for (int i = 0; i < readerCount; i++) {
+        if (strcmp(readers[i].id, readerID) == 0) return i;
+    }
+    return -1;
+}
 
 // ========================
 // KHAI BÁO NGUYÊN MẪU HÀM (chỉ cần nếu gọi chéo)
