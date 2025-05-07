@@ -88,15 +88,6 @@ Hệ thống được tách thành 6 module chính + 1 module tiện ích:
 - Không dùng GUI, không dùng thư viện ngoài
 - Các hàm sử dụng `printf()`, `scanf()`, `fgets()`
 
----
-
-## 🚀 Gợi ý cho AI để hỗ trợ nhóm
-
-- Viết module BST (`bst.c`, `bst.h`) để lưu sách theo tiêu đề
-- Tạo `deleteBookFromBST()` nếu cần xóa khỏi cây
-- Dùng `qsort()` để sắp xếp sách nếu chưa dùng cây
-- Thêm `saveToFile()` và `loadFromFile()` để đọc/ghi dữ liệu ra file
-- Viết hàm cập nhật thông tin sách hoặc bạn đọc (`updateBook()`, `updateReader()`)
 
 ---
 
