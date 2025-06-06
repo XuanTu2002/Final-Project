@@ -61,12 +61,12 @@ Dự án áp dụng nhiều cấu trúc dữ liệu khác nhau để tối ưu h
 
 #### Windows
 ```bash
-gcc -o library main.c book.c borrow_return.c reader.c reservation.c statistic.c bst.c
+gcc -o library main.c book.c borrow_return.c reader.c reservation.c statistic.c bst.c data_io.c
 ```
 
 #### Unix/Linux
 ```bash
-gcc -o library main.c book.c borrow_return.c reader.c reservation.c statistic.c bst.c
+gcc -o library main.c book.c borrow_return.c reader.c reservation.c statistic.c bst.c data_io.c
 ```
 
 ### Chạy chương trình
@@ -92,6 +92,7 @@ library.exe
 | `statistic.c` | Module thống kê và báo cáo |
 | `bst.c` | Cài đặt cây nhị phân tìm kiếm cho sách |
 | `bst.h` | Định nghĩa cấu trúc dữ liệu và nguyên mẫu hàm cho BST |
+| `data_io.c` / `data_io.h` | Nạp và lưu dữ liệu sách, bạn đọc vào file |
 
 ## 🌟 Tính năng nổi bật
 
@@ -110,5 +111,6 @@ library.exe
 ## 📝 Ghi chú
 
 - Dự án được viết hoàn toàn bằng ngôn ngữ C chuẩn, không sử dụng thư viện ngoài
-- Dữ liệu chỉ được lưu trong bộ nhớ, chưa có tính năng lưu trữ vào file
+- Khi khởi động, chương trình tự động đọc dữ liệu từ `books.txt` và `readers.txt` nếu có.
+- Trước khi thoát, dữ liệu hiện có được lưu trở lại các file này.
 - Được phát triển như một phần của khóa học Cấu trúc dữ liệu và Giải thuật

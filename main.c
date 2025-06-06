@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "common.h"
+#include "data_io.h"
+
+#define BOOK_FILE "books.txt"
+#define READER_FILE "readers.txt"
 
 // ==========================
 // KHAI BÁO NGUYÊN MẪU CỦA MODULE
@@ -44,6 +48,9 @@ void hienThiMenuChinh() {
 int main() {
     int choice;
 
+    loadBooks(BOOK_FILE);
+    loadReaders(READER_FILE);
+
     do {
         hienThiMenuChinh();
         if (scanf("%d", &choice) != 1) {
@@ -76,6 +83,9 @@ int main() {
         }
 
     } while (choice != 0);
+
+    saveBooks(BOOK_FILE);
+    saveReaders(READER_FILE);
 
     return 0;
 }
