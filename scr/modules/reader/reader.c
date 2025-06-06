@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "common.h"
+#include "../../../include/common.h"
 
 #define MAX_ID 10
 
@@ -26,6 +26,10 @@ void themBanDoc() {
     printf("📝 Nhập họ tên: ");
     fgets(r.name, sizeof(r.name), stdin);
     r.name[strcspn(r.name, "\n")] = '\0';
+    
+    printf("🎓 Nhập mã sinh viên: ");
+    fgets(r.studentID, sizeof(r.studentID), stdin);
+    r.studentID[strcspn(r.studentID, "\n")] = '\0';
 
     printf("🏫 Nhập khoa/đơn vị: ");
     fgets(r.department, sizeof(r.department), stdin);
@@ -46,12 +50,12 @@ void hienThiDanhSachBanDoc() {
         return;
     }
 
-    printf("\n%-10s %-25s %-25s %-10s\n", "Mã", "Họ tên", "Khoa/Đơn vị", "Sách mượn");
-    printf("--------------------------------------------------------------------------\n");
+    printf("\n%-7s %-20s %-15s %-20s %-10s\n", "Mã BD", "Họ tên", "Mã sinh viên", "Khoa/Đơn vị", "Sách mượn");
+    printf("----------------------------------------------------------------------------------------\n");
 
     for (int i = 0; i < readerCount; i++) {
-        printf("%s\t%s\t%s\t%d\n",
-            readers[i].id, readers[i].name, readers[i].department, readers[i].borrowedCount);     
+        printf("%-7s %-20.20s %-15.15s %-20.20s %d\n",
+            readers[i].id, readers[i].name, readers[i].studentID, readers[i].department, readers[i].borrowedCount);     
     }
 }
 
@@ -61,15 +65,18 @@ void hienThiDanhSachBanDoc() {
 void timKiemBanDoc() {
     char keyword[100];
     getchar();
-    printf("🔍 Nhập từ khoá tên hoặc mã bạn đọc: ");
+    printf("🔍 Nhập từ khoá tên, mã bạn đọc hoặc mã sinh viên: ");
     fgets(keyword, sizeof(keyword), stdin);
     keyword[strcspn(keyword, "\n")] = '\0';
 
     int found = 0;
+    printf("\n%-7s %-20s %-15s %-20s %-10s\n", "Mã BD", "Họ tên", "Mã sinh viên", "Khoa/Đơn vị", "Sách mượn");
+    printf("----------------------------------------------------------------------------------------\n");
+    
     for (int i = 0; i < readerCount; i++) {
-        if (strstr(readers[i].id, keyword) || strstr(readers[i].name, keyword)) {
-            printf("👤 %s - %s - %s (%d sách)\n",
-                readers[i].id, readers[i].name, readers[i].department, readers[i].borrowedCount);
+        if (strstr(readers[i].id, keyword) || strstr(readers[i].name, keyword) || strstr(readers[i].studentID, keyword)) {
+            printf("%-7s %-20.20s %-15.15s %-20.20s %d\n",
+                readers[i].id, readers[i].name, readers[i].studentID, readers[i].department, readers[i].borrowedCount);
             found = 1;
         }
     }

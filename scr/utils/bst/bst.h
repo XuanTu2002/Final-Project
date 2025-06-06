@@ -1,7 +1,7 @@
 #ifndef BST_H
 #define BST_H
 
-#include "common.h"
+#include "../../../include/common.h"
 
 /**
  * Cấu trúc node cho cây nhị phân tìm kiếm (BST)

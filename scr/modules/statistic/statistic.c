@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "common.h"
+#include "../../../include/common.h"
 
 // ===============================
 // 1. SÁCH ĐƯỢC MƯỢN NHIỀU NHẤT

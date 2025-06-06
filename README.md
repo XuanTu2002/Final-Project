@@ -54,19 +54,22 @@ Dự án áp dụng nhiều cấu trúc dữ liệu khác nhau để tối ưu h
 ## 🔧 Hướng dẫn biên dịch và chạy
 
 ### Yêu cầu
-- Trình biên dịch GCC
-- Môi trường Windows hoặc Unix/Linux
+- Trình biên dịch GCC trên Windows
+- Hỗ trợ Unicode UTF-8 (tiếng Việt)
 
 ### Biên dịch
 
 #### Windows
 ```bash
-gcc -o library main.c book.c borrow_return.c reader.c reservation.c statistic.c bst.c data_io.c
+# Sử dụng build.bat để biên dịch
+build.bat
 ```
 
-#### Unix/Linux
+#### Khi chạy
 ```bash
-gcc -o library main.c book.c borrow_return.c reader.c reservation.c statistic.c bst.c data_io.c
+# Bật hỗ trợ UTF-8 trước khi chạy chương trình
+chcp 65001
+library.exe
 ```
 
 ### Chạy chương trình
@@ -80,19 +83,38 @@ library.exe
 
 ## 📁 Cấu trúc mã nguồn
 
+Dự án được tổ chức theo cấu trúc module như sau:
+
+```
+thuvien/
+├── scr/
+│   ├── modules/           # Các module chức năng
+│   │   ├── book/         # Module quản lý sách
+│   │   ├── reader/       # Module quản lý bạn đọc
+│   │   ├── borrow/       # Module quản lý mượn trả
+│   │   ├── reservation/  # Module quản lý đặt chỗ
+│   │   └── statistic/    # Module báo cáo thống kê
+│   ├── utils/            # Các module tiện ích
+│   │   ├── bst/         # Cây nhị phân tìm kiếm
+│   │   └── data_io/      # Module đọc/ghi dữ liệu
+│   ├── data/            # Thư mục chứa dữ liệu
+│   │   ├── books.txt    # Dữ liệu sách
+│   │   └── readers.txt  # Dữ liệu bạn đọc
+│   └── main.c           # Điểm vào chương trình
+├── include/             # Thư mục chứa header files
+│   └── common.h         # Định nghĩa cấu trúc dữ liệu, biến toàn cục
+├── build.bat            # Script biên dịch cho Windows
+└── README.md           # Tài liệu hướng dẫn
+```
+
+### Các file chính:
+
 | File | Mô tả |
 |------|-------|
-| `main.c` | Điểm vào chương trình, hiển thị menu chính và gọi các module |
-| `common.h` | Định nghĩa các cấu trúc dữ liệu chung, biến toàn cục và hàm tiện ích |
-| `book.c` | Module quản lý sách (thêm, xóa, tìm kiếm, hiển thị) |
-| `reader.c` | Module quản lý bạn đọc (thêm, xóa, tìm kiếm, hiển thị) |
-| `borrow_return.c` | Module quản lý mượn và trả sách |
-| `reservation.c` | Module quản lý đặt chỗ sách với hàng đợi ưu tiên |
-| `reservation.h` | Định nghĩa cấu trúc dữ liệu cho hàng đợi ưu tiên đặt chỗ |
-| `statistic.c` | Module thống kê và báo cáo |
-| `bst.c` | Cài đặt cây nhị phân tìm kiếm cho sách |
-| `bst.h` | Định nghĩa cấu trúc dữ liệu và nguyên mẫu hàm cho BST |
-| `data_io.c` / `data_io.h` | Nạp và lưu dữ liệu sách, bạn đọc vào file |
+| `scr/main.c` | Điểm vào chương trình, hiển thị menu chính và gọi các module |
+| `include/common.h` | Định nghĩa các cấu trúc dữ liệu chung, biến toàn cục và hàm tiện ích |
+| `build.bat` | Script dùng để biên dịch chương trình trên Windows |
+| `scr/data/*.txt` | Các file dữ liệu lưu trữ thông tin sách và bạn đọc |
 
 ## 🌟 Tính năng nổi bật
 

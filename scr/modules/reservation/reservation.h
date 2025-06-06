@@ -1,7 +1,7 @@
 #ifndef RESERVATION_H
 #define RESERVATION_H
 
-#include "common.h"
+#include "../../../include/common.h"
 
 /**
  * Cấu trúc node cho hàng đợi ưu tiên đặt chỗ sách

@@ -32,6 +32,7 @@ typedef struct {
 typedef struct {
     char id[10];              // Mã bạn đọc (ví dụ: "BD012")
     char name[100];           // Họ tên
+    char studentID[20];       // Mã sinh viên (ví dụ: "20227271") - duy nhất cho mỗi sinh viên
     char department[100];     // Khoa / đơn vị công tác
     int borrowedCount;        // Số sách đang mượn hiện tại
     char borrowedBookIDs[MAX_BORROWED][10]; // Danh sách mã sách đang mượn

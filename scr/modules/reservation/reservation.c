@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "common.h"
+#include "../../../include/common.h"
 #include "reservation.h"
 
 #define MAX_BOOKS_WITH_RESERVATIONS 1000

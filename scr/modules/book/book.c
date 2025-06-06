@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "common.h"
-#include "bst.h"
+#include "../../../include/common.h"
+#include "../../utils/bst/bst.h"
 
 // Biến toàn cục cho cây BST
 BookNode* bookTree = NULL;

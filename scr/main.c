@@ -1,19 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "common.h"
-#include "data_io.h"
+#include "../include/common.h"
+#include "utils/data_io/data_io.h"
 
-#define BOOK_FILE "books.txt"
-#define READER_FILE "readers.txt"
+#define BOOK_FILE "scr/data/books.txt"
+#define READER_FILE "scr/data/readers.txt"
 
 // ==========================
 // KHAI BÁO NGUYÊN MẪU CỦA MODULE
 // ==========================
-void runBookModule();           // Thành viên 1
-void runBorrowReturnModule();   // Thành viên 2
-void runReaderModule();         // Thành viên 3
-void runStatisticModule();      // Thành viên 4
-void runReservationModule();    // Thành viên 5
+void runBookModule();         // Thành viên 1
+void runBorrowReturnModule(); // Thành viên 2
+void runReaderModule();       // Thành viên 3
+void runStatisticModule();    // Thành viên 4
+void runReservationModule();  // Thành viên 5
 
 // ==========================
 // BIẾN TOÀN CỤC
@@ -27,7 +27,8 @@ int readerCount = 0;
 // ==========================
 // HÀM HIỂN THỊ MENU CHÍNH
 // ==========================
-void hienThiMenuChinh() {
+void hienThiMenuChinh()
+{
     printf("\n");
     printf("=============================================\n");
     printf("        HỆ THỐNG QUẢN LÝ THƯ VIỆN\n");
@@ -45,41 +46,46 @@ void hienThiMenuChinh() {
 // ==========================
 // HÀM MAIN
 // ==========================
-int main() {
+int main()
+{
     int choice;
 
     loadBooks(BOOK_FILE);
     loadReaders(READER_FILE);
 
-    do {
+    do
+    {
         hienThiMenuChinh();
-        if (scanf("%d", &choice) != 1) {
+        if (scanf("%d", &choice) != 1)
+        {
             printf("⚠️  Lỗi: Bạn phải nhập một số!\n");
-            while (getchar() != '\n'); // Xóa bộ đệm nhập
+            while (getchar() != '\n')
+                ; // Xóa bộ đệm nhập
             continue;
         }
 
-        switch (choice) {
-            case 1:
-                runBookModule();
-                break;
-            case 2:
-                runBorrowReturnModule();
-                break;
-            case 3:
-                runReaderModule();
-                break;
-            case 4:
-                runStatisticModule();
-                break;
-            case 5:
-                runReservationModule();
-                break;
-            case 0:
-                printf("👋 Cảm ơn bạn đã sử dụng hệ thống. Hẹn gặp lại!\n");
-                break;
-            default:
-                printf("❌ Lựa chọn không hợp lệ. Vui lòng thử lại!\n");
+        switch (choice)
+        {
+        case 1:
+            runBookModule();
+            break;
+        case 2:
+            runBorrowReturnModule();
+            break;
+        case 3:
+            runReaderModule();
+            break;
+        case 4:
+            runStatisticModule();
+            break;
+        case 5:
+            runReservationModule();
+            break;
+        case 0:
+            printf("👋 Cảm ơn bạn đã sử dụng hệ thống. Hẹn gặp lại!\n");
+            break;
+        default:
+            printf("❌ Lựa chọn không hợp lệ. Vui lòng thử lại!\n");
         }
 
     } while (choice != 0);
