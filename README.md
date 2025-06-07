@@ -51,77 +51,113 @@ Dự án áp dụng nhiều cấu trúc dữ liệu khác nhau để tối ưu h
 4. **Hàng đợi ưu tiên (Priority Queue)**: Quản lý đặt chỗ sách theo thứ tự ưu tiên
 5. **Linked List**: Cài đặt hàng đợi ưu tiên cho module đặt chỗ
 
-## 🔧 Hướng dẫn biên dịch và chạy
+## 🔧 Hướng dẫn cài đặt và chạy
 
 ### Yêu cầu
-- Trình biên dịch GCC trên Windows
+- Trình biên dịch GCC (MinGW trên Windows)
+- Hệ điều hành: Windows/Linux/macOS
 - Hỗ trợ Unicode UTF-8 (tiếng Việt)
 
-### Biên dịch
+### Cách chạy chương trình
 
-#### Windows
-```bash
-# Sử dụng build.bat để biên dịch
-build.bat
-```
+#### Trên Windows
+1. Mở Command Prompt (cmd) hoặc PowerShell
+2. Di chuyển đến thư mục chứa dự án
+3. Chạy file `run.bat`:
+   ```bash
+   run.bat
+   ```
+   - Lần đầu tiên chạy, chương trình sẽ tự động biên dịch
+   - Các lần chạy sau sẽ khởi động nhanh hơn
 
-#### Khi chạy
-```bash
-# Bật hỗ trợ UTF-8 trước khi chạy chương trình
-chcp 65001
-library.exe
-```
+#### Trên Linux/macOS
+1. Mở Terminal
+2. Cài đặt gcc nếu chưa có:
+   ```bash
+   sudo apt-get install gcc   # Ubuntu/Debian
+   brew install gcc           # macOS (với Homebrew)
+   ```
+3. Biên dịch thủ công:
+   ```bash
+   gcc scr/main.c scr/modules/book/book.c scr/modules/reader/reader.c \
+   scr/modules/borrow/borrow_return.c scr/modules/statistic/statistic.c \
+   scr/modules/reservation/reservation.c scr/utils/data_io/data_io.c \
+   scr/utils/bst/bst.c scr/utils/bst/bst_stat.c -o library
+   ```
+4. Chạy chương trình:
+   ```bash
+   ./library
+   ```
 
-### Chạy chương trình
-```bash
-# Windows
-library.exe
+### Lưu ý
+- Chương trình tự động tạo thư mục `scr/data` nếu chưa tồn tại
+- Dữ liệu được lưu tự động vào các file `books.txt` và `readers.txt` trong thư mục `scr/data`
 
-# Unix/Linux
-./library
-```
+## 📁 Cấu trúc dữ liệu và mã nguồn
 
-## 📁 Cấu trúc mã nguồn
+### Cấu trúc dữ liệu chính
 
-Dự án được tổ chức theo cấu trúc module như sau:
+1. **Sách (Book)**
+   - Mã sách (ID)
+   - Tiêu đề
+   - Tác giả
+   - Thể loại
+   - Giá tiền
+   - Trạng thái (có sẵn/đã mượn)
+
+2. **Bạn đọc (Reader)**
+   - Mã bạn đọc (ID)
+   - Họ tên
+   - Mã số sinh viên
+   - Khoa
+   - Số sách đang mượn
+
+3. **Đặt chỗ (Reservation)**
+   - Mã sách
+   - Mã bạn đọc
+   - Mức độ ưu tiên
+   - Thời gian đặt chỗ
+
+### Cấu trúc thư mục
 
 ```
 thuvien/
 ├── scr/
 │   ├── modules/           # Các module chức năng
-│   │   ├── book/         # Module quản lý sách
-│   │   ├── reader/       # Module quản lý bạn đọc
-│   │   ├── borrow/       # Module quản lý mượn trả
-│   │   ├── reservation/  # Module quản lý đặt chỗ
-│   │   └── statistic/    # Module báo cáo thống kê
-│   ├── utils/            # Các module tiện ích
-│   │   ├── bst/         # Cây nhị phân tìm kiếm
-│   │   │   ├── bst.c    # Cài đặt BST cơ bản
-│   │   │   ├── bst.h    # Khai báo cho BST cơ bản
-│   │   │   ├── bst_stat.c # Cài đặt BST cho thống kê
-│   │   │   └── bst_stat.h # Khai báo cho BST thống kê
-│   │   └── data_io/     # Module đọc/ghi dữ liệu
-│   ├── data/            # Thư mục chứa dữ liệu
-│   │   ├── books.txt    # Dữ liệu sách
-│   │   └── readers.txt  # Dữ liệu bạn đọc
-│   └── main.c           # Điểm vào chương trình
-├── include/             # Thư mục chứa header files
-│   └── common.h         # Định nghĩa cấu trúc dữ liệu, biến toàn cục
-├── build.bat            # Script biên dịch cho Windows
-└── README.md           # Tài liệu hướng dẫn
+│   │   ├── book/         # Quản lý sách (thêm, xóa, tìm kiếm)
+│   │   ├── reader/       # Quản lý bạn đọc
+│   │   ├── borrow/       # Xử lý mượn/trả sách
+│   │   ├── reservation/  # Quản lý đặt chỗ (hàng đợi ưu tiên)
+│   │   └── statistic/    # Thống kê và báo cáo
+│   ├── utils/            # Tiện ích hỗ trợ
+│   │   ├── bst/         # Cài đặt cây nhị phân tìm kiếm
+│   │   │   ├── bst.[ch]      # BST cơ bản cho sách
+│   │   │   └── bst_stat.[ch] # BST cho thống kê
+│   │   └── data_io/     # Xử lý đọc/ghi file
+│   ├── data/            # Thư mục dữ liệu
+│   │   ├── books.txt    # Danh sách sách
+│   │   └── readers.txt  # Danh sách bạn đọc
+│   └── main.c           # Chương trình chính
+├── include/             # Header files
+│   └── common.h         # Khai báo chung
+├── run.bat             # Chạy chương trình (Windows)
+└── README.md           # Hướng dẫn sử dụng
 ```
 
-### Các file chính:
+### Mô tả các module chính
 
-| File | Mô tả |
-|------|-------|
-| `scr/main.c` | Điểm vào chương trình, hiển thị menu chính và gọi các module |
-| `include/common.h` | Định nghĩa các cấu trúc dữ liệu chung, biến toàn cục và hàm tiện ích |
-| `scr/utils/bst/bst.h/c` | Cài đặt cây nhị phân tìm kiếm cơ bản |
-| `scr/utils/bst/bst_stat.h/c` | Cài đặt cây nhị phân cho thống kê sách |
-| `scr/modules/statistic/statistic.c` | Xử lý các chức năng thống kê, báo cáo |
-| `build.bat` | Script dùng để biên dịch chương trình trên Windows |
-| `scr/data/*.txt` | Các file dữ liệu lưu trữ thông tin sách và bạn đọc |
+| Module | Chức năng | Cấu trúc dữ liệu |
+|--------|-----------|------------------|
+| **Book** | Quản lý sách, tìm kiếm, hiển thị | Mảng tĩnh, BST |
+| **Reader** | Quản lý bạn đọc | Mảng tĩnh |
+| **Borrow** | Xử lý mượn/trả sách | Danh sách liên kết |
+| **Reservation** | Đặt chỗ sách | Hàng đợi ưu tiên |
+| **Statistic** | Thống kê, báo cáo | BST đặc biệt |
+
+### Luồng dữ liệu
+1. Khởi động: Đọc dữ liệu từ file → Mảng/BST
+2. Xử lý: Tương tác qua menu → Cập nhật dữ liệu
+3. Kết thúc: Lưu dữ liệu từ bộ nhớ → File
 
 ## 🌟 Tính năng nổi bật
 
