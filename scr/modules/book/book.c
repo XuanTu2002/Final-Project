@@ -59,17 +59,23 @@ void themSach() {
 // ==============================
 void hienThiDanhSachSach() {
     if (bookCount == 0) {
-        printf("📭 Không có sách nào trong thư viện.\n");
+        printf(" Không có sách nào trong thư viện.\n");
         return;
     }
 
-    printf("\n%-10s %-25s %-20s %-15s %-8s %-10s\n", "Mã", "Tiêu đề", "Tác giả", "Thể loại", "Giá", "Trạng thái");
+    // In tiêu đề bảng
+    printf("\nMã        Tiêu đề               Tác giả           Thể loại    Giá     Trạng thái\n");
     printf("----------------------------------------------------------------------------------------\n");
 
+    // Hiển thị từng sách theo dạng bảng
     for (int i = 0; i < bookCount; i++) {
-        printf("%-10s %-25s %-20s %-15s %-8d %-10s\n",
-            books[i].id, books[i].title, books[i].author, books[i].category,
-            books[i].price, books[i].available ? "Còn" : "Đã mượn");
+        // In thông tin sách theo dạng cột
+        printf("%-10s ", books[i].id);
+        printf("%-20.20s ", books[i].title);
+        printf("%-18.18s ", books[i].author);
+        printf("%-10.10s ", books[i].category);
+        printf("%-8d ", books[i].price);
+        printf("%s\n", books[i].available ? "Còn" : "Đã mượn");
     }
 }
 
@@ -90,11 +96,11 @@ void timKiemTheoTieuDe() {
     searchBooksByKeyword(bookTree, keyword, results, &count);
     
     if (count > 0) {
-        printf("\n%-10s %-25s %-20s %-15s %-8s %-10s\n", "Mã", "Tiêu đề", "Tác giả", "Thể loại", "Giá", "Trạng thái");
+        printf("\n%-10s %-30s %-25s %-20s %-10s %-10s\n", "Mã", "Tiêu đề", "Tác giả", "Thể loại", "Giá", "Trạng thái");
         printf("----------------------------------------------------------------------------------------\n");
         
         for (int i = 0; i < count; i++) {
-            printf("%-10s %-25s %-20s %-15s %-8d %-10s\n",
+            printf("%-10s %-30s %-25s %-20s %-10d %-10s\n",
                 results[i].id, results[i].title, results[i].author, results[i].category,
                 results[i].price, results[i].available ? "Còn" : "Đã mượn");
         }

@@ -1,3 +1,4 @@
-001|abc|abc|abc|10000|1
-002|aa|aa|a|1000|1
-003|dd|dd|d|1000|1
+1|Lập trình C nâng cao|Nguyễn Văn An|CNTT|150000|0
+2|Cơ sở dữ liệu|Trần Thị Bình|CNTT|180000|0
+4|Toán rời rạc|Phạm Thị Dung|Toán|110000|1
+5|Kỹ năng mềm|Hoàng Văn Em|Kỹ năng|85000|0

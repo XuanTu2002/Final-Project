@@ -46,15 +46,17 @@ void themBanDoc() {
 // ==============================
 void hienThiDanhSachBanDoc() {
     if (readerCount == 0) {
-        printf("📭 Không có bạn đọc nào trong hệ thống.\n");
+        printf("💭 Không có bạn đọc nào trong hệ thống.\n");
         return;
     }
 
-    printf("\n%-7s %-20s %-15s %-20s %-10s\n", "Mã BD", "Họ tên", "Mã sinh viên", "Khoa/Đơn vị", "Sách mượn");
+    // In tiêu đề bảng
+    printf("\nMã BD  Họ tên            Mã sinh viên  Khoa/Đơn vị      Sách mượn\n");
     printf("----------------------------------------------------------------------------------------\n");
 
+    // Hiển thị từng bạn đọc theo dạng bảng
     for (int i = 0; i < readerCount; i++) {
-        printf("%-7s %-20.20s %-15.15s %-20.20s %d\n",
+        printf("%-7s %-20s %-15s %-20s %-10d\n",
             readers[i].id, readers[i].name, readers[i].studentID, readers[i].department, readers[i].borrowedCount);     
     }
 }
@@ -70,12 +72,12 @@ void timKiemBanDoc() {
     keyword[strcspn(keyword, "\n")] = '\0';
 
     int found = 0;
-    printf("\n%-7s %-20s %-15s %-20s %-10s\n", "Mã BD", "Họ tên", "Mã sinh viên", "Khoa/Đơn vị", "Sách mượn");
+    printf("\nMã BD  Họ tên            Mã sinh viên  Khoa/Đơn vị      Sách mượn\n");
     printf("----------------------------------------------------------------------------------------\n");
     
     for (int i = 0; i < readerCount; i++) {
         if (strstr(readers[i].id, keyword) || strstr(readers[i].name, keyword) || strstr(readers[i].studentID, keyword)) {
-            printf("%-7s %-20.20s %-15.15s %-20.20s %d\n",
+            printf("%-7s %-20s %-15s %-20s %-10d\n",
                 readers[i].id, readers[i].name, readers[i].studentID, readers[i].department, readers[i].borrowedCount);
             found = 1;
         }

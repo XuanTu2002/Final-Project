@@ -1,1 +1,5 @@
-001|nguyen dinh manh|20230001|toan tin|0|
+1|Nguyễn Văn Long|20227278|Toán|1|2
+2|Trần Thị Hương|20227271|Toán-Tin|2|5,1
+3|Phạm Đức Minh|20235678|CNTT|0|
+4|Lê Thị Xuân|20221234|Vật lý|0|
+5|Hoàng Văn Nam|20215678|Hóa học|0|
