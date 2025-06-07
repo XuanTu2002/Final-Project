@@ -123,12 +123,13 @@ thuvien/
 3. **Giao diện thân thiện**: Menu trực quan, dễ sử dụng với các biểu tượng emoji
 4. **Kiểm tra dữ liệu**: Kiểm tra tính hợp lệ của dữ liệu đầu vào để đảm bảo tính nhất quán
 
-## 👥 Nhóm phát triển
+## 👥 Nhóm phát triển (5 thành viên
 
-- [Thành viên 1]
-- [Thành viên 2]
-- [Thành viên 3]
-- [Thành viên 4]
+- Nguyễn Xuân Tự ( Trưởng nhóm)
+- Nguyễn Đình Mạnh
+- Lê Văn Lương
+- Hoàng Minh 
+- Dương Ngọc Ninh
 
 ## 📝 Ghi chú
 
