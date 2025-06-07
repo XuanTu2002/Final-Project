@@ -55,6 +55,15 @@ typedef struct {
     int borrowCount;      // Số lần sách này đã được mượn
 } BookStat;
 
+/*
+ * Cấu trúc node cho cây BST thống kê sách
+ */
+typedef struct BookStatNode {
+    BookStat stat;                 // Thông tin thống kê sách
+    struct BookStatNode* left;     // Con trỏ đến node con bên trái
+    struct BookStatNode* right;    // Con trỏ đến node con bên phải
+} BookStatNode;
+
 // ========================
 // BIẾN TOÀN CỤC CHO TOÀN DỰ ÁN
 // ========================

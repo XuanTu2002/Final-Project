@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "../../../include/common.h"
+#include "../../utils/bst/bst_stat.h"
 
 // ===============================
 // 1. SÁCH ĐƯỢC MƯỢN NHIỀU NHẤT
@@ -87,6 +88,38 @@ void thongKeTinhTrangSach() {
 }
 
 // ===============================
+// 4. THỐNG KÊ TOP N SÁCH ĐƯỢC MƯỢN
+// ===============================
+void thongKeTopSachMuon(int N) {
+    if (bookCount == 0) {
+        printf("📭 Không có sách nào trong thư viện.\n");
+        return;
+    }
+
+    BookStatNode* root = NULL;
+    int max = 0;
+
+    for (int i = 0; i < bookCount; i++) {
+        BookStat st;
+        strcpy(st.bookID, books[i].id);
+        st.borrowCount = demSoLanMuon(books[i].id);
+        if (st.borrowCount > max) max = st.borrowCount;
+        root = insertBookStat(root, st);
+    }
+
+    if (max == 0) {
+        printf("📘 Chưa có sách nào được mượn.\n");
+        freeBookStatBST(root);
+        return;
+    }
+
+    int printed = 0;
+    printf("\n📊 TOP %d SÁCH ĐƯỢC MƯỢN NHIỀU NHẤT:\n", N);
+    reverseInorder(root, &printed, N);
+    freeBookStatBST(root);
+}
+
+// ===============================
 // MENU MODULE BÁO CÁO – THỐNG KÊ
 // ===============================
 void runStatisticModule() {
@@ -96,6 +129,7 @@ void runStatisticModule() {
         printf("1. Sách được mượn nhiều nhất\n");
         printf("2. Bạn đọc mượn nhiều nhất\n");
         printf("3. Thống kê sách còn và sách mượn\n");
+        printf("4. Thống kê top N sách mượn nhiều\n");
         printf("0. Quay lại menu chính\n");
         printf("=====================================\n");
         printf("Nhập lựa chọn: ");
@@ -105,6 +139,13 @@ void runStatisticModule() {
             case 1: thongKeSachMuonNhieuNhat(); break;
             case 2: thongKeBanDocMuonNhieuNhat(); break;
             case 3: thongKeTinhTrangSach(); break;
+            case 4: {
+                int N;
+                printf("Nhập N: ");
+                scanf("%d", &N);
+                thongKeTopSachMuon(N);
+                break;
+            }
             case 0: printf("↩️  Quay lại menu chính...\n"); break;
             default: printf("❌ Lựa chọn không hợp lệ!\n");
         }
