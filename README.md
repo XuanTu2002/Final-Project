@@ -171,7 +171,7 @@ thuvien/
 - Nguyễn Xuân Tự ( Trưởng nhóm)
 - Nguyễn Đình Mạnh
 - Lê Văn Lương
-- Hoàng Minh 
+- Hoàng Minh Nhất
 - Dương Ngọc Ninh
 
 ## 📝 Ghi chú
