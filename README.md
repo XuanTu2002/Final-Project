@@ -96,7 +96,11 @@ thuvien/
 │   │   └── statistic/    # Module báo cáo thống kê
 │   ├── utils/            # Các module tiện ích
 │   │   ├── bst/         # Cây nhị phân tìm kiếm
-│   │   └── data_io/      # Module đọc/ghi dữ liệu
+│   │   │   ├── bst.c    # Cài đặt BST cơ bản
+│   │   │   ├── bst.h    # Khai báo cho BST cơ bản
+│   │   │   ├── bst_stat.c # Cài đặt BST cho thống kê
+│   │   │   └── bst_stat.h # Khai báo cho BST thống kê
+│   │   └── data_io/     # Module đọc/ghi dữ liệu
 │   ├── data/            # Thư mục chứa dữ liệu
 │   │   ├── books.txt    # Dữ liệu sách
 │   │   └── readers.txt  # Dữ liệu bạn đọc
@@ -113,6 +117,9 @@ thuvien/
 |------|-------|
 | `scr/main.c` | Điểm vào chương trình, hiển thị menu chính và gọi các module |
 | `include/common.h` | Định nghĩa các cấu trúc dữ liệu chung, biến toàn cục và hàm tiện ích |
+| `scr/utils/bst/bst.h/c` | Cài đặt cây nhị phân tìm kiếm cơ bản |
+| `scr/utils/bst/bst_stat.h/c` | Cài đặt cây nhị phân cho thống kê sách |
+| `scr/modules/statistic/statistic.c` | Xử lý các chức năng thống kê, báo cáo |
 | `build.bat` | Script dùng để biên dịch chương trình trên Windows |
 | `scr/data/*.txt` | Các file dữ liệu lưu trữ thông tin sách và bạn đọc |
 
