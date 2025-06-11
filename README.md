@@ -43,13 +43,25 @@ Dự án nhằm ứng dụng các cấu trúc dữ liệu và giải thuật đ�
 
 ## 🧱 Cấu trúc dữ liệu đã áp dụng
 
-Dự án áp dụng nhiều cấu trúc dữ liệu khác nhau để tối ưu hiệu suất và tổ chức dữ liệu:
+Dự án áp dụng các cấu trúc dữ liệu sau để tối ưu hiệu suất và tổ chức dữ liệu:
 
 1. **Struct**: Định nghĩa cấu trúc dữ liệu cho `Book`, `Reader`, `Reservation`
-2. **Mảng**: Lưu trữ danh sách sách và bạn đọc
-3. **Cây nhị phân tìm kiếm (BST)**: Tối ưu việc tìm kiếm và sắp xếp sách theo tiêu đề
-4. **Hàng đợi ưu tiên (Priority Queue)**: Quản lý đặt chỗ sách theo thứ tự ưu tiên
-5. **Linked List**: Cài đặt hàng đợi ưu tiên cho module đặt chỗ
+2. **Mảng tĩnh**: 
+   - Lưu trữ danh sách sách (`books[]`) với kích thước cố định
+   - Lưu trữ danh sách bạn đọc (`readers[]`) với kích thước cố định
+   - Mỗi bạn đọc có một mảng `borrowedBookIDs` để lưu trữ các sách đang mượn
+3. **Cây nhị phân tìm kiếm (BST)**: 
+   - Sử dụng để sắp xếp và tìm kiếm sách theo tiêu đề
+   - Cài đặt các thao tác cơ bản: thêm, xóa, tìm kiếm, duyệt in-order
+4. **Hàng đợi ưu tiên (Priority Queue)**:
+   - Sử dụng trong module đặt chỗ sách
+   - Được cài đặt bằng danh sách liên kết đơn với các thao tác:
+     - Thêm vào hàng đợi theo độ ưu tiên
+     - Xóa khỏi hàng đợi
+     - Hiển thị danh sách đặt chỗ
+5. **Danh sách liên kết đơn (Singly Linked List)**:
+   - Sử dụng để cài đặt hàng đợi ưu tiên trong module đặt chỗ
+   - Mỗi nút chứa thông tin đặt chỗ và con trỏ đến nút kế tiếp
 
 ## 🔧 Hướng dẫn cài đặt và chạy
 
@@ -98,25 +110,25 @@ Dự án áp dụng nhiều cấu trúc dữ liệu khác nhau để tối ưu h
 ### Cấu trúc dữ liệu chính
 
 1. **Sách (Book)**
-   - Mã sách (ID)
-   - Tiêu đề
-   - Tác giả
-   - Thể loại
-   - Giá tiền
-   - Trạng thái (có sẵn/đã mượn)
+   - `id[10]` - Mã sách (ví dụ: "MS001")
+   - `title[100]` - Tiêu đề sách
+   - `author[100]` - Tác giả
+   - `category[50]` - Thể loại sách (ví dụ: "Khoa học", "Tiểu thuyết")
+   - `price` - Giá tiền (số nguyên)
+   - `available` - Trạng thái sách (1: còn sách, 0: đang được mượn)
 
 2. **Bạn đọc (Reader)**
-   - Mã bạn đọc (ID)
-   - Họ tên
-   - Mã số sinh viên
-   - Khoa
-   - Số sách đang mượn
+   - `id[10]` - Mã bạn đọc (ví dụ: "BD012")
+   - `name[100]` - Họ tên
+   - `studentID[20]` - Mã sinh viên (duy nhất cho mỗi sinh viên)
+   - `department[100]` - Khoa/đơn vị công tác
+   - `borrowedCount` - Số sách đang mượn hiện tại
+   - `borrowedBookIDs[MAX_BORROWED][10]` - Danh sách mã sách đang mượn (tối đa 10 cuốn)
 
 3. **Đặt chỗ (Reservation)**
-   - Mã sách
-   - Mã bạn đọc
-   - Mức độ ưu tiên
-   - Thời gian đặt chỗ
+   - `bookID[10]` - Mã sách được đặt
+   - `readerID[10]` - Mã bạn đọc đã đặt
+   - `priority` - Mức độ ưu tiên (1: cán bộ, 2: sinh viên)
 
 ### Cấu trúc thư mục
 
@@ -148,11 +160,11 @@ thuvien/
 
 | Module | Chức năng | Cấu trúc dữ liệu |
 |--------|-----------|------------------|
-| **Book** | Quản lý sách, tìm kiếm, hiển thị | Mảng tĩnh, BST |
-| **Reader** | Quản lý bạn đọc | Mảng tĩnh |
-| **Borrow** | Xử lý mượn/trả sách | Danh sách liên kết |
-| **Reservation** | Đặt chỗ sách | Hàng đợi ưu tiên |
-| **Statistic** | Thống kê, báo cáo | BST đặc biệt |
+| **Book** | Quản lý sách, tìm kiếm, hiển thị | Mảng tĩnh `books[]` và BST sắp xếp theo tiêu đề |
+| **Reader** | Quản lý thông tin bạn đọc | Mảng tĩnh `readers[]` |
+| **Borrow** | Xử lý mượn/trả sách | Mảng tĩnh `borrowedBookIDs[]` trong struct Reader |
+| **Reservation** | Đặt chỗ sách | Danh sách liên kết đơn (hàng đợi ưu tiên) |
+| **Statistic** | Thống kê, báo cáo | BST cho thống kê sách mượn nhiều |
 
 ### Luồng dữ liệu
 1. Khởi động: Đọc dữ liệu từ file → Mảng/BST
